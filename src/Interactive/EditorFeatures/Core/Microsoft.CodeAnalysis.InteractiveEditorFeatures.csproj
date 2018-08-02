@@ -51,7 +51,6 @@
     <InternalsVisibleTo Include="csi" />
     <InternalsVisibleTo Include="Microsoft.CodeAnalysis.CSharp.InteractiveEditorFeatures" />
     <InternalsVisibleTo Include="Microsoft.CodeAnalysis.VisualBasic.InteractiveEditorFeatures" />
-    <InternalsVisibleTo Include="Microsoft.VisualStudio.InteractiveServices" />
     <!-- The rest are for test purposes only. -->
     <InternalsVisibleTo Include="Roslyn.Hosting.Diagnostics" />
     <InternalsVisibleTo Include="InteractiveHost.UnitTests" />
