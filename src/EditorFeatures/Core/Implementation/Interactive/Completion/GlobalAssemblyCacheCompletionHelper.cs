@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the Apache License, Version 2.0.  See License.txt in the project root for license information.
 
-extern alias Scripting;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -18,7 +17,7 @@ namespace Microsoft.CodeAnalysis.Editor.Completion.FileSystem
     internal sealed class GlobalAssemblyCacheCompletionHelper
     {
         private static readonly Lazy<List<string>> s_lazyAssemblySimpleNames =
-            new Lazy<List<string>>(() => Scripting::Microsoft.CodeAnalysis.GlobalAssemblyCache.Instance.GetAssemblySimpleNames().ToList());
+            new Lazy<List<string>>(() => GlobalAssemblyCache.Instance.GetAssemblySimpleNames().ToList());
 
         private readonly CompletionItemRules _itemRules;
 
@@ -63,7 +62,7 @@ namespace Microsoft.CodeAnalysis.Editor.Completion.FileSystem
 
         private IEnumerable<AssemblyIdentity> GetAssemblyIdentities(string partialName)
         {
-            return IOUtilities.PerformIO(() => Scripting::Microsoft.CodeAnalysis.GlobalAssemblyCache.Instance.GetAssemblyIdentities(partialName),
+            return IOUtilities.PerformIO(() => GlobalAssemblyCache.Instance.GetAssemblyIdentities(partialName),
                 SpecializedCollections.EmptyEnumerable<AssemblyIdentity>());
         }
     }

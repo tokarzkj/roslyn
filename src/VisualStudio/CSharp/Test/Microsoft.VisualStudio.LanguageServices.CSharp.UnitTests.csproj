@@ -17,7 +17,6 @@
     <ProjectReference Include="..\..\..\EditorFeatures\TestUtilities2\Microsoft.CodeAnalysis.EditorFeatures.Test.Utilities.vbproj" />
     <ProjectReference Include="..\..\..\EditorFeatures\VisualBasic\Microsoft.CodeAnalysis.VisualBasic.EditorFeatures.vbproj" />
     <ProjectReference Include="..\..\..\Features\VisualBasic\Portable\Microsoft.CodeAnalysis.VisualBasic.Features.vbproj" />
-    <ProjectReference Include="..\..\..\Interactive\EditorFeatures\Core\Microsoft.CodeAnalysis.InteractiveEditorFeatures.csproj" />
     <ProjectReference Include="..\..\..\Interactive\EditorFeatures\CSharp\Microsoft.CodeAnalysis.CSharp.InteractiveEditorFeatures.csproj" />
     <ProjectReference Include="..\..\..\Interactive\EditorFeatures\VisualBasic\Microsoft.CodeAnalysis.VisualBasic.InteractiveEditorFeatures.vbproj" />
     <ProjectReference Include="..\..\..\Interactive\Features\Microsoft.CodeAnalysis.InteractiveFeatures.csproj" />
