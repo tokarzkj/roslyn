@@ -13,6 +13,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
+using Microsoft.CodeAnalysis.CSharp.Scripting.Hosting;
 using Microsoft.CodeAnalysis.CSharp.Test.Utilities;
 using Microsoft.CodeAnalysis.Editor.CSharp;
 using Microsoft.CodeAnalysis.Editor.CSharp.Interactive;
@@ -57,7 +59,7 @@ namespace Microsoft.CodeAnalysis.UnitTests.Interactive
 
             Assert.Equal("", errorOutput);
             Assert.Equal(2, output.Length);
-            Assert.Equal(string.Format(CSharpInteractiveEditorResources.Microsoft_R_Roslyn_CSharp_Compiler_version_0, FileVersionInfo.GetVersionInfo(_host.GetType().Assembly.Location).FileVersion), output[0]);
+            Assert.Equal(string.Format(CSharpScriptingResources.LogoLine1, typeof(CSharpReplServiceProvider).GetTypeInfo().Assembly.GetCustomAttribute<AssemblyFileVersionAttribute>().Version), output[0]);
             // "Type "#help" for more information."
             Assert.Equal(FeaturesResources.Type_Sharphelp_for_more_information, output[1]);
 

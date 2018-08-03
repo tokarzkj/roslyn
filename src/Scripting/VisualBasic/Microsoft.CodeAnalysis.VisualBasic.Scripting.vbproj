@@ -32,7 +32,7 @@
   <ItemGroup>
     <InternalsVisibleTo Include="vbi" />
     <!-- TODO: remove, see https://github.com/dotnet/roslyn/issues/5661 -->
-    <InternalsVisibleTo Include="Microsoft.CodeAnalysis.VisualBasic.InteractiveEditorFeatures" />
+    <InternalsVisibleTo Include="Microsoft.CodeAnalysis.VisualBasic.EditorFeatures.Wpf" />
     <!-- /TODO -->
     <InternalsVisibleTo Include="Microsoft.CodeAnalysis.UnitTests" />
     <InternalsVisibleTo Include="Microsoft.CodeAnalysis.VisualBasic.Emit.UnitTests" />

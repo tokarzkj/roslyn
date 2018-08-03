@@ -8,6 +8,7 @@ Imports Microsoft.CodeAnalysis.Host
 Imports Microsoft.VisualStudio.InteractiveWindow.Commands
 Imports Microsoft.VisualStudio.Text.Classification
 Imports Microsoft.VisualStudio.Utilities
+Imports Microsoft.CodeAnalysis.VisualBasic.Scripting.Hosting
 
 Namespace Microsoft.CodeAnalysis.Editor.VisualBasic.Interactive
 
