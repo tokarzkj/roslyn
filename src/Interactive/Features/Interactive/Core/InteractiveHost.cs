@@ -175,7 +175,7 @@ namespace Microsoft.CodeAnalysis.Interactive
 
                     lock (_outputGuard)
                     {
-                        _output.WriteLine(FeaturesResources.Attempt_to_connect_to_process_Sharp_0_failed_retrying, newProcessId);
+                        _output.WriteLine(InteractiveHostResources.Attempt_to_connect_to_process_Sharp_0_failed_retrying, newProcessId);
                     }
 
                     cancellationToken.ThrowIfCancellationRequested();
@@ -226,7 +226,7 @@ namespace Microsoft.CodeAnalysis.Interactive
                 string errorString = process.StandardError.ReadToEnd();
                 lock (_errorOutputGuard)
                 {
-                    _errorOutput.WriteLine(FeaturesResources.Failed_to_launch_0_process_exit_code_colon_1_with_output_colon, hostPath, process.ExitCode);
+                    _errorOutput.WriteLine(InteractiveHostResources.Failed_to_launch_0_process_exit_code_colon_1_with_output_colon, hostPath, process.ExitCode);
                     _errorOutput.WriteLine(errorString);
                 }
             }
@@ -334,7 +334,7 @@ namespace Microsoft.CodeAnalysis.Interactive
             {
                 lock (_errorOutputGuard)
                 {
-                    _errorOutput.WriteLine(FeaturesResources.Hosting_process_exited_with_exit_code_0, exitCode.Value);
+                    _errorOutput.WriteLine(InteractiveHostResources.Hosting_process_exited_with_exit_code_0, exitCode.Value);
                 }
             }
         }
@@ -379,7 +379,7 @@ namespace Microsoft.CodeAnalysis.Interactive
 
                 lock (_errorOutputGuard)
                 {
-                    _errorOutput.WriteLine(FeaturesResources.Unable_to_create_hosting_process);
+                    _errorOutput.WriteLine(InteractiveHostResources.Unable_to_create_hosting_process);
                 }
             }
             catch (OperationCanceledException)

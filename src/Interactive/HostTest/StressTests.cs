@@ -1,16 +1,17 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the Apache License, Version 2.0.  See License.txt in the project root for license information.
+extern alias InteractiveHost;
 
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using Microsoft.CodeAnalysis.CSharp.Scripting.Hosting;
-using Microsoft.CodeAnalysis.Editor.CSharp.Interactive;
-using Microsoft.CodeAnalysis.Interactive;
 using Xunit;
 
 namespace Microsoft.CodeAnalysis.UnitTests.Interactive
 {
+    using InteractiveHost::Microsoft.CodeAnalysis.Interactive;
+
     public sealed class StressTests : AbstractInteractiveHostTests
     {
         private readonly List<InteractiveHost> _processes = new List<InteractiveHost>();

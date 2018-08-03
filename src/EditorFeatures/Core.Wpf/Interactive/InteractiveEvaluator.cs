@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the Apache License, Version 2.0.  See License.txt in the project root for license information.
 extern alias Scripting;
+extern alias InteractiveHost;
 
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,7 @@ using Roslyn.Utilities;
 namespace Microsoft.CodeAnalysis.Editor.Interactive
 {
     using RelativePathResolver = Scripting::Microsoft.CodeAnalysis.RelativePathResolver;
+    using InteractiveHost::Microsoft.CodeAnalysis.Interactive;
 
     internal abstract class InteractiveEvaluator : IResettableInteractiveEvaluator
     {
@@ -158,7 +160,7 @@ namespace Microsoft.CodeAnalysis.Editor.Interactive
         protected abstract ParseOptions ParseOptions { get; }
         protected abstract CommandLineParser CommandLineParser { get; }
 
-        public event Action<InteractiveHostOptions> OnBeforeReset;
+        public event Action<bool> OnBeforeReset;
 
         #region Initialization
 
@@ -484,7 +486,7 @@ namespace Microsoft.CodeAnalysis.Editor.Interactive
         {
             try
             {
-                OnBeforeReset(options);
+                OnBeforeReset(options.Is64Bit);
 
                 var result = await _interactiveHost.ResetAsync(options).ConfigureAwait(false);
 

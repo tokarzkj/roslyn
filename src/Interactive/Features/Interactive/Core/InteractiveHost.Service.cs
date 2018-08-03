@@ -406,7 +406,7 @@ namespace Microsoft.CodeAnalysis.Interactive
                     }
                     else
                     {
-                        Console.Error.WriteLine(string.Format(FeaturesResources.Cannot_resolve_reference_0, reference));
+                        Console.Error.WriteLine(string.Format(InteractiveHostResources.Cannot_resolve_reference_0, reference));
                     }
                 }
                 catch (Exception e)
@@ -587,7 +587,7 @@ namespace Microsoft.CodeAnalysis.Interactive
 
                     if (File.Exists(initializationFileOpt))
                     {
-                        Console.Out.WriteLine(string.Format(FeaturesResources.Loading_context_from_0, Path.GetFileName(initializationFileOpt)));
+                        Console.Out.WriteLine(string.Format(InteractiveHostResources.Loading_context_from_0, Path.GetFileName(initializationFileOpt)));
                         var parser = _replServiceProvider.CommandLineParser;
 
                         // The base directory for relative paths is the directory that contains the .rsp file.
@@ -659,7 +659,7 @@ namespace Microsoft.CodeAnalysis.Interactive
 
                     if (!isRestarting)
                     {
-                        Console.Out.WriteLine(FeaturesResources.Type_Sharphelp_for_more_information);
+                        Console.Out.WriteLine(InteractiveHostResources.Type_Sharphelp_for_more_information);
                     }
                 }
                 catch (Exception e)
@@ -688,11 +688,11 @@ namespace Microsoft.CodeAnalysis.Interactive
                 {
                     if (displayPath)
                     {
-                        Console.Error.WriteLine(FeaturesResources.Specified_file_not_found_colon_0, path);
+                        Console.Error.WriteLine(InteractiveHostResources.Specified_file_not_found_colon_0, path);
                     }
                     else
                     {
-                        Console.Error.WriteLine(FeaturesResources.Specified_file_not_found);
+                        Console.Error.WriteLine(InteractiveHostResources.Specified_file_not_found);
                     }
 
                     if (attempts.Count > 0)
@@ -720,7 +720,7 @@ namespace Microsoft.CodeAnalysis.Interactive
                 }
 
                 var diagnostics = script.Compile();
-                if (diagnostics.HasAnyErrors())
+                if (diagnostics.Any(d => d.Severity == DiagnosticSeverity.Error))
                 {
                     DisplayInteractiveErrors(diagnostics, Console.Error);
                     return null;
@@ -790,8 +790,8 @@ namespace Microsoft.CodeAnalysis.Interactive
                 var uniqueDirectories = new HashSet<string>(directories);
 
                 writer.WriteLine(uniqueDirectories.Count == 1 ?
-                    FeaturesResources.Searched_in_directory_colon :
-                    FeaturesResources.Searched_in_directories_colon);
+                    InteractiveHostResources.Searched_in_directory_colon :
+                    InteractiveHostResources.Searched_in_directories_colon);
 
                 foreach (string directory in directories)
                 {
@@ -849,7 +849,7 @@ namespace Microsoft.CodeAnalysis.Interactive
                 if (diagnostics.Length > MaxErrorCount)
                 {
                     int notShown = diagnostics.Length - MaxErrorCount;
-                    output.WriteLine(string.Format(output.FormatProvider, FeaturesResources.plus_additional_0_1, notShown, (notShown == 1) ? "error" : "errors"));
+                    output.WriteLine(string.Format(output.FormatProvider, InteractiveHostResources.plus_additional_0_1, notShown, (notShown == 1) ? "error" : "errors"));
                 }
             }
 

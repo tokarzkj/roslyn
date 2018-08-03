@@ -13,6 +13,10 @@ using Microsoft.CodeAnalysis.ErrorReporting;
 using System.Linq.Expressions;
 #endif
 
+#if WORKSPACE
+using Microsoft.CodeAnalysis.Utilities;
+#endif
+
 namespace Roslyn.Utilities
 {
     [SuppressMessage("ApiDesign", "CA1068", Justification = "Matching TPL Signatures")]
@@ -50,7 +54,7 @@ namespace Roslyn.Utilities
 
         public static T WaitAndGetResult<T>(this Task<T> task, CancellationToken cancellationToken)
         {
-#if DEBUG
+#if DEBUG && WORKSPACE
             if (IsThreadPoolThread(Thread.CurrentThread))
             {
                 // If you hit this when running tests then your code is in error.  WaitAndGetResult

@@ -1,4 +1,5 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the Apache License, Version 2.0.  See License.txt in the project root for license information.
+extern alias InteractiveHost;
 
 using System;
 using System.Reflection;
@@ -10,6 +11,8 @@ using Microsoft.CodeAnalysis.Interactive;
 
 namespace Microsoft.CodeAnalysis.UnitTests.Interactive
 {
+    using InteractiveHost::Microsoft.CodeAnalysis.Interactive;
+
     public abstract class AbstractInteractiveHostTests : CSharpTestBase
     {
         // Forces xUnit to load dependent assemblies before we launch InteractiveHost.exe process.

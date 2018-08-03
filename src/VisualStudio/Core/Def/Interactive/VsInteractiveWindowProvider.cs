@@ -91,7 +91,7 @@ namespace Microsoft.VisualStudio.LanguageServices.Interactive
 
             if (_vsInteractiveWindow is ToolWindowPane interactiveWindowPane)
             {
-                evaluator.OnBeforeReset += options => interactiveWindowPane.Caption = Title + (options.Is64Bit ? " (64-bit)" : " (32-bit)");
+                evaluator.OnBeforeReset += is64bit => interactiveWindowPane.Caption = Title + (is64bit ? " (64-bit)" : " (32-bit)");
             }
 
             var window = _vsInteractiveWindow.InteractiveWindow;
