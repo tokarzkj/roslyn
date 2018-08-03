@@ -1,4 +1,5 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the Apache License, Version 2.0.  See License.txt in the project root for license information.
+extern alias InteractiveHost;
 
 using System;
 using System.ComponentModel.Design;
@@ -41,6 +42,9 @@ namespace Microsoft.VisualStudio.LanguageServices.Interactive
             Assumes.Present(shell);
             Assumes.Present(_componentModel);
             Assumes.Present(menuCommandService);
+
+            InteractiveHost::Microsoft.CodeAnalysis.ErrorReporting.FatalError.Handler = FailFast.OnFatalException;
+            InteractiveHost::Microsoft.CodeAnalysis.ErrorReporting.FatalError.NonFatalHandler = WatsonReporter.Report;
 
             // Load the Roslyn package so that its FatalError handlers are hooked up.
             shell.LoadPackage(Guids.RoslynPackageId, out var roslynPackage);

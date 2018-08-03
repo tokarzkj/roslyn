@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft.  All Rights Reserved.  Licensed under the Apache License, Version 2.0.  See License.txt in the project root for license information.
 
 using System;
+using Microsoft.CodeAnalysis.ErrorReporting;
 
 namespace Microsoft.CodeAnalysis.Interactive
 {
@@ -8,6 +9,8 @@ namespace Microsoft.CodeAnalysis.Interactive
     {
         private static int Main(string[] args)
         {
+            FatalError.Handler = FailFast.OnFatalException;
+
             try
             {
                 InteractiveHost.Service.RunServer(args);
