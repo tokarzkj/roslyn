@@ -110,9 +110,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CSharpPackageRegistration.pkgdef" />
-    <Content Include="Interactive\CSharpInteractive.rsp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Interactive\Resources\ScriptFile.ico" />
     <VSCTCompile Include="Interactive\Commands.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>

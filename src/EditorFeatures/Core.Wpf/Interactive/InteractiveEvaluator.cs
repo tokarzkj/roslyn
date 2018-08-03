@@ -86,15 +86,15 @@ namespace Microsoft.CodeAnalysis.Editor.Interactive
             IViewClassifierAggregatorService classifierAggregator,
             IInteractiveWindowCommandsFactory commandsFactory,
             ImmutableArray<IInteractiveWindowCommand> commands,
-            string responseFilePath,
+            string responseFileName,
             string initialWorkingDirectory,
             Type replType)
         {
-            Debug.Assert(responseFilePath == null || PathUtilities.IsAbsolute(responseFilePath));
+            Debug.Assert(responseFileName == null || responseFileName.IndexOfAny(new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar }) == -1);
 
             _threadingContext = threadingContext;
             _contentType = contentType;
-            _responseFilePath = responseFilePath;
+            _responseFilePath = Path.Combine(GetDesktopHostDirectory(), responseFileName);
             _workspace = new InteractiveWorkspace(hostServices, this);
             _contentTypeChangedHandler = new EventHandler<ContentTypeChangedEventArgs>(LanguageBufferContentTypeChanged);
             _classifierAggregator = classifierAggregator;
@@ -476,9 +476,13 @@ namespace Microsoft.CodeAnalysis.Editor.Interactive
             return ResetAsyncWorker(GetHostOptions(initialize, resetOptions.Is64Bit));
         }
 
+        private static string GetDesktopHostDirectory()
+            => Path.Combine(Path.GetDirectoryName(typeof(InteractiveEvaluator).Assembly.Location), "DesktopHost");
+
         public InteractiveHostOptions GetHostOptions(bool initialize, bool? is64bit)
             => new InteractiveHostOptions(
-                 initializationFile: initialize ? _responseFilePath : null,
+                 hostDirectory: _interactiveHost.OptionsOpt?.HostDirectory ?? GetDesktopHostDirectory(),
+                 initializationFile : initialize ? _responseFilePath : null,
                  culture: CultureInfo.CurrentUICulture,
                  is64Bit: is64bit ?? _interactiveHost.OptionsOpt?.Is64Bit ?? InteractiveHost.DefaultIs64Bit);
 

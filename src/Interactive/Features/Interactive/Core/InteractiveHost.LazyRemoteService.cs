@@ -50,7 +50,7 @@ namespace Microsoft.CodeAnalysis.Interactive
                 {
                     Host.ProcessStarting?.Invoke(Options.InitializationFile != null);
 
-                    var remoteService = await TryStartProcessAsync(GetPath(Options.Is64Bit), Options.Culture, cancellationToken).ConfigureAwait(false);
+                    var remoteService = await TryStartProcessAsync(Options.GetHostPath(), Options.Culture, cancellationToken).ConfigureAwait(false);
                     if (remoteService == null)
                     {
                         return default;

@@ -27,7 +27,6 @@ namespace Microsoft.CodeAnalysis.Editor.CSharp.Interactive
             IInteractiveWindowCommandsFactory commandsFactory,
             ImmutableArray<IInteractiveWindowCommand> commands,
             IContentTypeRegistryService contentTypeRegistry,
-            string responseFileDirectory,
             string initialWorkingDirectory)
             : base(
                 threadingContext,
@@ -36,7 +35,7 @@ namespace Microsoft.CodeAnalysis.Editor.CSharp.Interactive
                 classifierAggregator,
                 commandsFactory,
                 commands,
-                (responseFileDirectory != null) ? Path.Combine(responseFileDirectory, InteractiveResponseFile) : null,
+                InteractiveResponseFile,
                 initialWorkingDirectory,
                 typeof(CSharpReplServiceProvider))
         {

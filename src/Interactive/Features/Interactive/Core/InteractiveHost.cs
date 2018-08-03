@@ -94,9 +94,6 @@ namespace Microsoft.CodeAnalysis.Interactive
 
         #endregion
 
-        public static string GetPath(bool is64bit)
-            => Path.Combine(Path.GetDirectoryName(typeof(InteractiveHost).Assembly.Location), "InteractiveHost" + (is64bit ? "64" : "32") + ".exe");
-
         private static string GenerateUniqueChannelLocalName()
         {
             return typeof(InteractiveHost).FullName + Guid.NewGuid();

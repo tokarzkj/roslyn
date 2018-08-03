@@ -68,7 +68,6 @@ namespace Microsoft.VisualStudio.LanguageServices.CSharp.Interactive
                 CommandsFactory,
                 Commands,
                 contentTypeRegistry,
-                Path.GetDirectoryName(typeof(CSharpVsInteractiveWindowPackage).Assembly.Location),
                 Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
         }
 

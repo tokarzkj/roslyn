@@ -77,7 +77,7 @@ namespace Microsoft.CodeAnalysis.UnitTests.Interactive
                 t.Start();
             });
 
-            p.ResetAsync(new InteractiveHostOptions()).Wait();
+            p.ResetAsync(new InteractiveHostOptions(GetInteractiveHostDirectory())).Wait();
 
             for (int j = 0; j < 10; j++)
             {

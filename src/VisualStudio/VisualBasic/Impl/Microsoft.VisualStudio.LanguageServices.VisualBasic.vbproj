@@ -103,9 +103,6 @@
       <DependentUpon>IntelliSenseOptionPageControl.xaml</DependentUpon>
     </Compile>
     <Content Include="VisualBasicPackageRegistration.pkgdef" />
-    <Content Include="Interactive\VisualBasicInteractive.rsp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Interactive\Resources\ScriptFile.ico" />
     <VSCTCompile Include="Interactive\Commands.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>

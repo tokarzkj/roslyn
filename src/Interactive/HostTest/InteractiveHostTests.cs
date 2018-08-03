@@ -47,7 +47,7 @@ namespace Microsoft.CodeAnalysis.UnitTests.Interactive
 
             RedirectOutput();
 
-            _host.ResetAsync(new InteractiveHostOptions(initializationFile: null, culture: CultureInfo.InvariantCulture)).Wait();
+            _host.ResetAsync(new InteractiveHostOptions(GetInteractiveHostDirectory(), initializationFile: null, culture: CultureInfo.InvariantCulture)).Wait();
 
             var remoteService = _host.TryGetService();
             Assert.NotNull(remoteService);
@@ -137,7 +137,7 @@ namespace Microsoft.CodeAnalysis.UnitTests.Interactive
         {
             ClearOutput();
 
-            var initTask = _host.ResetAsync(new InteractiveHostOptions(initializationFile: rspFile, culture: CultureInfo.InvariantCulture));
+            var initTask = _host.ResetAsync(new InteractiveHostOptions(GetInteractiveHostDirectory(), initializationFile: rspFile, culture: CultureInfo.InvariantCulture));
             initTask.Wait();
         }
 
@@ -851,7 +851,7 @@ new D().Y
             var rspFile = Temp.CreateFile();
             rspFile.WriteAllText("/lib:" + directory.Path);
 
-            _host.ResetAsync(new InteractiveHostOptions(initializationFile: rspFile.Path, culture: CultureInfo.InvariantCulture)).Wait();
+            _host.ResetAsync(new InteractiveHostOptions(GetInteractiveHostDirectory(), initializationFile: rspFile.Path, culture: CultureInfo.InvariantCulture)).Wait();
 
             Execute(
 $@"#r ""{assemblyName}.dll""
@@ -883,7 +883,7 @@ typeof(C).Assembly.GetName()");
 /u:System.Text
 /u:System.Threading.Tasks
 ");
-            _host.ResetAsync(new InteractiveHostOptions(initializationFile: rspFile.Path, culture: CultureInfo.InvariantCulture)).Wait();
+            _host.ResetAsync(new InteractiveHostOptions(GetInteractiveHostDirectory(), initializationFile: rspFile.Path, culture: CultureInfo.InvariantCulture)).Wait();
 
             Execute(@"
 dynamic d = new ExpandoObject();
@@ -932,7 +932,7 @@ OK
 {initFile.Path}
 ");
 
-            _host.ResetAsync(new InteractiveHostOptions(initializationFile: rspFile.Path, culture: CultureInfo.InvariantCulture)).Wait();
+            _host.ResetAsync(new InteractiveHostOptions(GetInteractiveHostDirectory(), initializationFile: rspFile.Path, culture: CultureInfo.InvariantCulture)).Wait();
 
             Execute("new Process()");
 
@@ -958,7 +958,7 @@ a
 b
 c
 ");
-            _host.ResetAsync(new InteractiveHostOptions(initializationFile: rspFile.Path, culture: CultureInfo.InvariantCulture)).Wait();
+            _host.ResetAsync(new InteractiveHostOptions(GetInteractiveHostDirectory(), initializationFile: rspFile.Path, culture: CultureInfo.InvariantCulture)).Wait();
 
             Assert.Equal("", ReadErrorOutputToEnd());
 
@@ -1180,9 +1180,9 @@ Console.Write(Task.Run(() => { Thread.CurrentThread.Join(100); return 42; }).Con
         public async Task Bitness()
         {
             await _host.ExecuteAsync(@"System.IntPtr.Size");
-            await _host.ResetAsync(new InteractiveHostOptions(initializationFile: null, culture: CultureInfo.InvariantCulture, is64Bit: true));
+            await _host.ResetAsync(new InteractiveHostOptions(GetInteractiveHostDirectory(), initializationFile: null, culture: CultureInfo.InvariantCulture, is64Bit: true));
             await _host.ExecuteAsync(@"System.IntPtr.Size");
-            await _host.ResetAsync(new InteractiveHostOptions(initializationFile: null, culture: CultureInfo.InvariantCulture, is64Bit: false));
+            await _host.ResetAsync(new InteractiveHostOptions(GetInteractiveHostDirectory(), initializationFile: null, culture: CultureInfo.InvariantCulture, is64Bit: false));
             await _host.ExecuteAsync(@"System.IntPtr.Size");
 
             var output = ReadOutputToEnd();
