@@ -67,6 +67,13 @@
     </None>
   </ItemGroup>
 
-  <Target Name="VsixSourceItemsOutputGroup" Returns="@(VSIXSourceItem)" DependsOnTargets="GetVsixSourceItems" />
+  <Target Name="VsixSourceItemsOutputGroup"
+          Returns="@(VSIXSourceItem)"
+          DependsOnTargets="GetVsixSourceItems">
+    <ItemGroup>
+      <!-- VSSDK inserts cache file to VSIXSourceItem group for some reason. Don't include it in the VSIX. -->
+      <VSIXSourceItem Remove="$(CreateTemplateManifestsCacheFile)"/>
+    </ItemGroup>
+  </Target>
 
 </Project>
