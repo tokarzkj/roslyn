@@ -19,7 +19,7 @@ namespace Microsoft.CodeAnalysis {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class FeaturesResources {
@@ -1005,7 +1005,6 @@ namespace Microsoft.CodeAnalysis {
             }
         }
         
-<<<<<<< HEAD
         /// <summary>
         ///   Looks up a localized string similar to Convert to LINQ (call form).
         /// </summary>
@@ -1015,8 +1014,6 @@ namespace Microsoft.CodeAnalysis {
             }
         }
         
-=======
->>>>>>> Reduce InteractiveFeatures dependencies
         /// <summary>
         ///   Looks up a localized string similar to Convert to struct.
         /// </summary>
@@ -1326,6 +1323,16 @@ namespace Microsoft.CodeAnalysis {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to analyze data-flow for: {0}.
+        /// </summary>
+        internal static string Failed_to_analyze_data_flow_for_0 {
+            get {
+                return ResourceManager.GetString("Failed_to_analyze_data_flow_for_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to field.
         /// </summary>
         internal static string field {

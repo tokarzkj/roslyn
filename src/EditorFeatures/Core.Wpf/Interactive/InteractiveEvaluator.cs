@@ -482,7 +482,7 @@ namespace Microsoft.CodeAnalysis.Editor.Interactive
         public InteractiveHostOptions GetHostOptions(bool initialize, bool? is64bit)
             => new InteractiveHostOptions(
                  hostDirectory: _interactiveHost.OptionsOpt?.HostDirectory ?? GetDesktopHostDirectory(),
-                 initializationFile : initialize ? _responseFilePath : null,
+                 initializationFile: initialize ? _responseFilePath : null,
                  culture: CultureInfo.CurrentUICulture,
                  is64Bit: is64bit ?? _interactiveHost.OptionsOpt?.Is64Bit ?? InteractiveHost.DefaultIs64Bit);
 
