@@ -195,7 +195,7 @@ jobs:
     inputs:
       PathtoPublish: '$(Build.SourcesDirectory)/artifacts/log/$(BuildConfiguration)/AssetManifest'
       ArtifactName: AssetManifests
-    condition: succeeded()
+    condition: and(succeeded(), ne(variables['SkipPublish'], 'true'))
 
   # Tag the build at the very end when we know it's been successful.
   - task: colinsalmcorner.colinsalmcorner-buildtasks.tag-build-task.tagBuildOrRelease@0
@@ -215,3 +215,4 @@ jobs:
       - OfficialBuild
     queue:
       name: Hosted VS2017
+  condition: ne(variables['SkipPublish'], 'true')
