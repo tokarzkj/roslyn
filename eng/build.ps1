@@ -44,8 +44,9 @@ param (
 
     # official build settings
     [string]$officialBuildId = "",
-    [string]$officialSkipApplyOptimizationData = "",
     [string]$officialSkipTests = "",
+    [string]$officialSkipPublish = "",
+    [string]$officialSkipApplyOptimizationData = "",
 
     # Test actions
     [switch]$test32,
@@ -73,7 +74,7 @@ function Print-Usage() {
     Write-Host "  -rebuild                  Rebuild main solution"
     Write-Host "  -pack                     Build NuGet packages, VS insertion manifests and installer"
     Write-Host "  -sign                     Sign our binaries"
-    Write-Host "  -publish                  Publish build artifacts (e.g. symbols)"
+    Write-Host "  -publish                  Publish build assets (e.g. packages, vsixes, symbols)"
     Write-Host "  -launch                   Launch Visual Studio in developer hive"
     Write-Host "  -help                     Print help and exit"
     Write-Host ""
@@ -99,6 +100,7 @@ function Print-Usage() {
     Write-Host "Official build settings:"
     Write-Host "  -officialBuildId                            An official build id, e.g. 20190102.3"
     Write-Host "  -officialSkipTests <bool>                   Pass 'true' to not run tests"
+    Write-Host "  -officialSkipPublish <bool>                 Pass 'true' to not publish assets (packages, vsixes, symbols)"
     Write-Host "  -officialSkipApplyOptimizationData <bool>   Pass 'true' to not apply optimization data"
     Write-Host ""
     Write-Host "Command line arguments starting with '/p:' are passed through to MSBuild."
@@ -132,12 +134,14 @@ function Process-Arguments() {
     }
 
     OfficialBuildOnly "officialSkipTests"
+    OfficialBuildOnly "officialSkipPublish"
     OfficialBuildOnly "officialSkipApplyOptimizationData"
 
     if ($officialBuildId) {
         $script:useGlobalNuGetCache = $false
         $script:procdump = $true
         $script:testDesktop = ![System.Boolean]::Parse($officialSkipTests)
+        $script:publish = ![System.Boolean]::Parse($officialSkipPublish)
         $script:applyOptimizationData = ![System.Boolean]::Parse($officialSkipApplyOptimizationData)
     } else {
         $script:applyOptimizationData = $false
