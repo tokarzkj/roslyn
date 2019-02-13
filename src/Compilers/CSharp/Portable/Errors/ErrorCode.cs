@@ -1682,6 +1682,8 @@ namespace Microsoft.CodeAnalysis.CSharp
         ERR_AsNullableType = 8651,
         ERR_FeatureInPreview = 8652,
 
+        ERR_MultipleAnalyzerConfigsInSameDir = 8700,
+
         #endregion diagnostics introduced for C# 8.0
 
         // Note: you will need to re-generate compiler code after adding warnings (eng\generate-compiler-code.cmd)
