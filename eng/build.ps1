@@ -197,6 +197,9 @@ function BuildSolution() {
     $suppressExtensionDeployment = if (!$deployExtensions) { "/p:DeployExtension=false" } else { "" } 
     $suppressPartialNgenOptimization = if (!$applyOptimizationData) { "/p:ApplyPartialNgenOptimization=false" } else { "" }
 
+    # Workaround for some machines in the AzDO pool not allowing long paths (%5c is msbuild escaped backslash)
+    $ibcDir = Join-Path $RepoRoot ".o%5c"
+
     # Setting /p:TreatWarningsAsErrors=true is a workaround for https://github.com/Microsoft/msbuild/issues/3062.
     # We don't pass /warnaserror to msbuild ($warnAsError is set to $false by default above), but set 
     # /p:TreatWarningsAsErrors=true so that compiler reported warnings, other than IDE0055 are treated as errors. 
@@ -221,6 +224,7 @@ function BuildSolution() {
         /p:QuietRestoreBinaryLog=$binaryLog `
         /p:TestTargetFrameworks=$testTargetFrameworks `
         /p:TreatWarningsAsErrors=true `
+        /p:IbcOptimizationDataDir=$ibcDir `
         $suppressPartialNgenOptimization `
         $suppressExtensionDeployment `
         @properties
